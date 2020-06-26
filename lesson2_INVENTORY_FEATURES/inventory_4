@@ -1,0 +1,16 @@
+web1 ansible_ssh_host=10.128.0.5 
+db1 ansible_ssh_host=10.128.0.4  
+
+[webservers]
+web1
+
+[dbservers]
+db1
+
+[datacenter:children]
+webservers
+dbservers 
+
+[datacenter:vars]
+ansible_ssh_user=stduser
+ansible_ssh_pass=stduser
