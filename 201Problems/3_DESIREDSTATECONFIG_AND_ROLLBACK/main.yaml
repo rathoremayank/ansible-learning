@@ -1,0 +1,23 @@
+---
+- hosts: all
+  become: yes
+  #sudo: yes
+  become_method: sudo
+  vars:
+    doc_root: "/var/www/html"
+    
+  
+  tasks:
+    - name: 'Installing Docker & Docker-Compose...'
+      raw: sudo apt-get install docker.io -y;
+      raw: sudo apt-get install docker-compose -y; 
+   
+    - name: 'Checking version...'
+      shell: sudo docker -v;sudo docker-compose -v 
+
+    - name: 'Uninstalling Docker & Docker-Compose...'
+      raw: sudo apt-get remove docker-compose -y;
+      raw: sudo apt-get remove docker.io -y; 
+
+    - name: 'Checking version...'
+      shell: sudo docker -v;sudo docker-compose -v;
